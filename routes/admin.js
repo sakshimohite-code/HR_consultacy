@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var exe = require('../conn');
 
-// ---------------- SESSION BASED LOGIN ----------------
+// ================= SESSION BASED LOGIN =================
 
 // Hardcoded admin credentials
 const adminUser = { username: 'admin', password: 'admin' };
@@ -18,7 +18,7 @@ router.post('/login', (req, res) => {
 
     if (username === adminUser.username && password === adminUser.password) {
         req.session.adminLoggedIn = true;
-        res.redirect('/admin'); // login नंतर dashboard ला redirect
+        res.redirect('/admin');
     } else {
         res.render('admin/login.ejs', { error: 'Invalid Username or Password' });
     }
@@ -31,7 +31,7 @@ router.get('/logout', (req, res) => {
     });
 });
 
-// ---------------- AUTH MIDDLEWARE ----------------
+// ================= AUTH MIDDLEWARE =================
 function checkAdminAuth(req, res, next) {
     if (req.session && req.session.adminLoggedIn) {
         next();
@@ -40,119 +40,121 @@ function checkAdminAuth(req, res, next) {
     }
 }
 
-// ---------------- DASHBOARD ----------------
-// /admin वर first access
+// ================= DASHBOARD =================
 router.get('/', (req, res) => {
     if (req.session && req.session.adminLoggedIn) {
-        res.render('admin/dashboard.ejs'); // login झालेल्यास dashboard
+        res.render('admin/dashboard.ejs');
     } else {
-        res.redirect('/admin/login'); // नाही तर login page
+        res.redirect('/admin/login');
     }
 });
 
-// ---------------- APPLY AUTH MIDDLEWARE ----------------
-// login झाल्यानंतरचे सर्व CRUD routes
+// ================= APPLY AUTH =================
 router.use(checkAdminAuth);
 
-// ---------------- WE SERVE INDUSTRY ----------------
+// ================= WE SERVE INDUSTRY =================
 router.get('/we_serve_industry', async (req, res) => {
-    var data = await exe("select * from we_serve_industry");
+    var data = await exe("SELECT * FROM we_serve_industry");
     res.render('admin/we_serve_industry.ejs', { we_serve_industry_data: data });
 });
 
 router.post('/save_we_serve_industry', async (req, res) => {
     var d = req.body;
     await exe(
-        "insert into we_serve_industry(we_serve_industry_icon,we_serve_industry_title,we_serve_industry_description) values(?,?,?)",
+        "INSERT INTO we_serve_industry (we_serve_industry_icon,we_serve_industry_title,we_serve_industry_description) VALUES (?,?,?)",
         [d.we_serve_industry_icon, d.we_serve_industry_title, d.we_serve_industry_description]
     );
     res.redirect('/admin/we_serve_industry');
 });
 
 router.get('/delete_we_serve_industry/:id', async (req, res) => {
-    await exe("delete from we_serve_industry where id=?", [req.params.id]);
+    await exe("DELETE FROM we_serve_industry WHERE id=?", [req.params.id]);
     res.redirect('/admin/we_serve_industry');
 });
 
 router.get('/edit_we_serve_industry/:id', async (req, res) => {
-    var data = await exe("select * from we_serve_industry where id=?", [req.params.id]);
+    var data = await exe("SELECT * FROM we_serve_industry WHERE id=?", [req.params.id]);
     res.render('admin/edit_we_serve_industry.ejs', { we_serve_industry: data });
 });
 
 router.post('/update_we_serve_industry/:id', async (req, res) => {
     var d = req.body;
     await exe(
-        "update we_serve_industry set we_serve_industry_icon=?, we_serve_industry_title=?, we_serve_industry_description=? where id=?",
+        "UPDATE we_serve_industry SET we_serve_industry_icon=?, we_serve_industry_title=?, we_serve_industry_description=? WHERE id=?",
         [d.we_serve_industry_icon, d.we_serve_industry_title, d.we_serve_industry_description, req.params.id]
     );
     res.redirect('/admin/we_serve_industry');
 });
 
-// ---------------- LATEST JOBS ----------------
+// ================= ADD SERVICES =================
+
+// show add service page
+router.get('/add_services', async (req, res) => {
+    var services_data = await exe("SELECT * FROM services");
+    res.render('admin/add_services.ejs', { services_data });
+});
+
+// save service
+router.post('/save_service', async (req, res) => {
+    var d = req.body;
+
+    await exe(
+        "INSERT INTO services (service_title, service_icon, service_description, service_points) VALUES (?,?,?,?)",
+        [d.service_title, d.service_icon, d.service_description, d.service_points]
+    );
+
+    res.redirect('/admin/add_services');
+});
+
+// delete service
+router.get('/delete_service/:id', async (req, res) => {
+    await exe("DELETE FROM services WHERE service_id=?", [req.params.id]);
+    res.redirect('/admin/add_services');
+});
+
+// edit service
+router.get('/edit_service/:id', async (req, res) => {
+    var service = await exe("SELECT * FROM services WHERE service_id=?", [req.params.id]);
+    res.render('admin/edit_service.ejs', { service });
+});
+
+// update service
+router.post('/update_service/:id', async (req, res) => {
+    var d = req.body;
+    await exe(
+        "UPDATE services SET service_title=?, service_icon=?, service_description=?, service_points=? WHERE service_id=?",
+        [d.service_title, d.service_icon, d.service_description, d.service_points, req.params.id]
+    );
+    res.redirect('/admin/add_services');
+});
+
+// ================= LATEST JOBS =================
 router.get('/latest_jobs', async (req, res) => {
-    var data = await exe("select * from latest_jobs");
+    var data = await exe("SELECT * FROM latest_jobs");
     res.render('admin/latest_jobs.ejs', { latest_jobs_data: data });
 });
 
-router.post('/save_latest_jobs', async (req, res) => {
-    var d = req.body;
-    await exe(
-        "insert into latest_jobs(job_role,company_name,company_location,emp_exp,job_desc,emp_lang,job_package) values(?,?,?,?,?,?,?)",
-        [d.job_role, d.company_name, d.company_location, d.emp_exp, d.job_desc, d.emp_lang, d.job_package]
-    );
-    res.redirect('/admin/latest_jobs');
-});
-
-router.get('/delete_latest_jobs/:id', async (req, res) => {
-    await exe("delete from latest_jobs where latest_jobs_id=?", [req.params.id]);
-    res.redirect('/admin/latest_jobs');
-});
-
-router.get('/edit_latest_jobs/:id', async (req, res) => {
-    var job = await exe("select * from latest_jobs where latest_jobs_id=?", [req.params.id]);
-    res.render('admin/edit_latest_jobs.ejs', { job });
-});
-
-router.post('/update_latest_job/:id', async (req, res) => {
-    var d = req.body;
-    await exe(
-        "update latest_jobs set job_role=?, company_name=?, company_location=?, emp_exp=?, job_desc=?, emp_lang=?, job_package=? where latest_jobs_id=?",
-        [d.job_role, d.company_name, d.company_location, d.emp_exp, d.job_desc, d.emp_lang, d.job_package, req.params.id]
-    );
-    res.redirect('/admin/latest_jobs');
-});
-
-// ---------------- COMPANY LIST ----------------
+// ================= COMPANY LIST =================
 router.get('/company_list', async (req, res) => {
-    var data = await exe("select * from company_list");
+    var data = await exe("SELECT * FROM company_list");
     res.render('admin/Company_list.ejs', { company_list_data: data });
 });
 
-router.post('/save_company', async (req, res) => {
-    var filename = "";
-    if (req.files && req.files.company_logo) {
-        filename = Date.now() + "_" + req.files.company_logo.name;
-        req.files.company_logo.mv("uploads/images/" + filename);
-    }
-    await exe("insert into company_list(company_logo) values(?)", [filename]);
-    res.redirect('/admin/company_list');
-});
-
-// ---------------- ABOUT ----------------
+// ================= ABOUT =================
 router.get('/about', async (req, res) => {
-    var about_data = await exe("select * from about limit 1");
+    var about_data = await exe("SELECT * FROM about LIMIT 1");
     res.render('admin/about.ejs', { about_data });
 });
 
-// ---------------- CONTACT ----------------
+// ================= CONTACT =================
 router.get('/contact', async (req, res) => {
-    var contact_data = await exe("select * from contact");
+    var contact_data = await exe("SELECT * FROM contact");
     res.render('admin/contact.ejs', { contact_data });
 });
 
-// ---------------- JOB APPLY ----------------
+// ================= JOB APPLY =================
 router.get('/job_apply', async (req, res) => {
-    var job_apply_data = await exe("select * from job_apply");
+    var job_apply_data = await exe("SELECT * FROM job_apply");
     res.render('admin/job_apply.ejs', { job_apply_data });
 });
 
