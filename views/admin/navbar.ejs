@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+/>
+    <!-- Custom CSS -->
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .sidebar {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px 0;
+            position: fixed;
+            width: 250px;
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+            transition: width 0.3s ease;
+        }
+        .sidebar.collapsed {
+            width: 80px;
+        }
+        .sidebar-header {
+            padding: 20px 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        .sidebar-header h3 {
+            color: white;
+            margin: 0;
+            transition: opacity 0.3s ease;
+        }
+        .sidebar.collapsed .sidebar-header h3 {
+            opacity: 0;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 15px 20px;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            background-color: rgba(255,255,255,0.1);
+            border-left-color: #ffc107;
+        }
+        .nav-link i {
+            margin-right: 10px;
+        }
+        .nav-link span {
+            transition: opacity 0.3s ease;
+        }
+        .sidebar.collapsed .nav-link span {
+            opacity: 0;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+        .main-content.expanded {
+            margin-left: 80px;
+        }
+        .toggle-btn {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-briefcase"></i> Admin</h3>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="/admin/dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/we_serve_industry">
+                    <i class="fas fa-users"></i>
+                    <span>We Serve Industry</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/latest_jobs">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Latest Jobs</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/Company_list">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Company List</span>
+                </a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="/admin/about">
+                    <i class="fas fa-file-alt"></i>
+                    <span>About</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/add_services">
+                    <i class="fas fa-cog"></i>
+                    <span>Services</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/contact">
+                    <i class="fas fa-cog"></i>
+                    <span>Contact</span>
+                </a>
+            </li>
+
+             <li class="nav-item">
+                <a class="nav-link" href="/admin/job_apply">
+                    <i class="fas fa-cog"></i>
+                    <span>Job Apply</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <button class="toggle-btn" id="toggleBtn">
+            <i class="fas fa-bars"></i> Toggle
+        </button>

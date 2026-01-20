@@ -1,0 +1,43 @@
+<%- include('navbar.ejs') %>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Job Position</th>
+            <th>Skills</th>
+            <th>Resume</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(var i=0; i<job_apply_data.length; i++) { %>
+        <tr>
+            <td><%= i + 1 %></td>
+            <td><%= job_apply_data[i].first_name %></td>
+            <td><%= job_apply_data[i].last_name %></td>
+            <td><%= job_apply_data[i].email %></td>
+            <td><%= job_apply_data[i].phone %></td>
+            <td><%= job_apply_data[i].address %></td>
+            <td><%= job_apply_data[i].jobposition %></td>
+            <td><%= job_apply_data[i].skills %></td>
+            <td>
+               
+                    <a href="/uploads/<%= job_apply_data[i].resume %>" target="_blank">View Resume</a>
+             
+               
+            </td>
+            <td>
+                <form action="/admin/delete_job_apply/<%= job_apply_data[i].id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this application?');">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+<%- include('footer.ejs') %>
+

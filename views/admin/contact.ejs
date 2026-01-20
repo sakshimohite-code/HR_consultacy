@@ -1,0 +1,25 @@
+<%- include('navbar.ejs') %>
+<table class="table table-striped mt-4">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Full Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Message</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(var i=0; i<contact_data.length; i++) { %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= contact_data[i].fullname %></td>
+        <td><%= contact_data[i].email %></td>
+        <td><%= contact_data[i].phone %></td>
+        <td><%= contact_data[i].subject %></td>
+        <td><%= contact_data[i].message %></td>
+      </tr>
+    <% } %>
+  </tbody>
+<%- include('footer.ejs') %>

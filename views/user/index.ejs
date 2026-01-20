@@ -1,0 +1,285 @@
+
+<%- include('navbar.ejs') %>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero-section d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 text-white hero-content">
+                <h1 class="fw-bold display-5">Find Your Dream Job or Top Talent</h1>
+                <p class="lead">
+                    TalentHub connects exceptional candidates with leading companies across IT, Sales, Finance, and more.
+                </p>
+                <div class="mt-4">
+                    <a href="/jobs" class="btn btn-light btn-lg me-2">Browse Jobs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- ===== INDUSTRIES WE SERVE ===== -->
+    <section class="industries">
+        <div class="container">
+            <div class="section-title">
+                <h2>Industries We Serve</h2>
+                <p>Expert recruitment across multiple sectors with proven track record</p>
+            </div>
+            <div class="row g-4">
+                <% for(var i=0; i<we_serve_industry_data.length; i++) { %>
+                <div class="col-md-6 col-lg-4">
+                  <div class="industry-card">
+    <i class="<%= we_serve_industry_data[i].we_serve_industry_icon %> fs-2 text-primary"></i>
+
+    <h4>
+        <%= we_serve_industry_data[i].we_serve_industry_title %>
+    </h4>
+
+    <p>
+        <%= we_serve_industry_data[i].we_serve_industry_description %>
+    </p>
+</div>
+
+                </div>
+               <% } %>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHY CHOOSE US ===== -->
+    <section class="why-choose">
+        <div class="container">
+            <div class="section-title text-white">
+                <h2 style="color: white;">Why Choose TalentHub?</h2>
+                <p style="color: rgba(255,255,255,0.9);">We are your trusted partner in finding the right opportunities and talent</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="why-choose-card">
+                        <i class="bi bi-shield-check"></i>
+                        <h4>Trusted & Verified</h4>
+                        <p>All candidates are thoroughly vetted and verified for authenticity and credentials.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="why-choose-card">
+                        <i class="bi bi-lightning-charge"></i>
+                        <h4>Fast Hiring Process</h4>
+                        <p>Quick turnaround time from application to interview to placement within weeks.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="why-choose-card">
+                        <i class="bi bi-star-fill"></i>
+                        <h4>Expert Consultants</h4>
+                        <p>Experienced recruiters with deep industry knowledge guide you throughout the process.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LATEST JOB OPENINGS ===== -->
+ <section style="background-color: var(--light-bg);">
+    <div class="container">
+        <div class="row">
+
+            <% for(var i=0; i < latest_jobs_data.length; i++) { %>
+
+            <div class="col-lg-6">
+                <div class="job-card">
+                    <h5><%= latest_jobs_data[i].job_role %></h5>
+
+                    <div class="job-meta">
+                        <span class="job-meta-item">
+                            <i class="bi bi-building"></i>
+                            <%= latest_jobs_data[i].company_name %>
+                        </span>
+
+                        <span class="job-meta-item">
+                            <i class="bi bi-geo-alt"></i>
+                            <%= latest_jobs_data[i].company_location %>
+                        </span>
+
+                        <span class="job-meta-item">
+                            <i class="bi bi-briefcase"></i>
+                            <%= latest_jobs_data[i].emp_exp %>
+                        </span>
+                    </div>
+
+                    <p class="job-description">
+                        <%= latest_jobs_data[i].job_desc %>
+                    </p>
+
+                    <div>
+                        <span class="badge">
+                            <%= latest_jobs_data[i].emp_lang %>
+                        </span>
+                    </div>
+
+                    <div class="mt-3">
+                        <small class="text-success">
+                            &#8377; <%= latest_jobs_data[i].job_package %>
+                        </small>
+                    </div>
+
+                    <a href="/jobs" class="btn btn-primary btn-sm mt-3">
+                        View Details & Apply
+                    </a>
+                </div>
+            </div>
+
+            <% } %>
+
+        </div>
+         <div class="text-center mt-5">
+                <a href="/jobs" class="btn btn-primary btn-lg">View All Jobs</a>
+            </div>
+    </div>
+</section>
+
+    <!-- ===== HIRING PROCESS ===== -->
+    <section class="hiring-process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Hiring Process</h2>
+                <p>Transparent and efficient recruitment journey</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4 position-relative">
+                    <div class="process-step">
+                        <div class="process-step-number">1</div>
+                        <h4>Register</h4>
+                        <p>Create your profile and share your skills, experience, and career goals with us.</p>
+                    </div>
+                    <span class="process-arrow d-none d-lg-block">→</span>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4 position-relative">
+                    <div class="process-step">
+                        <div class="process-step-number">2</div>
+                        <h4>Apply</h4>
+                        <p>Browse and apply for jobs that match your profile and career aspirations.</p>
+                    </div>
+                    <span class="process-arrow d-none d-lg-block">→</span>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4 position-relative">
+                    <div class="process-step">
+                        <div class="process-step-number">3</div>
+                        <h4>Interview</h4>
+                        <p>Participate in screening calls, technical rounds, and face-to-face interviews.</p>
+                    </div>
+                    <span class="process-arrow d-none d-lg-block">→</span>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="process-step">
+                        <div class="process-step-number">4</div>
+                        <h4>Placement</h4>
+                        <p>Receive job offer and join your dream company with our full support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CLIENT LOGOS ===== -->
+    <section class="clients-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Companies We Work With</h2>
+            <p>Trusted by leading companies across industries</p>
+        </div>
+
+        <div class="row g-4">
+            <% for(var i=0; i<company_list.length; i++) { %>
+                <div class="col-md-4 col-lg-2">
+                    <div class="client-logo">
+                        <img 
+                          src="/uploads/images/<%= company_list[i].company_logo %>" 
+                          alt="Company Logo"
+                          class="img-fluid"
+                        >
+                    </div>
+                </div>
+            <% } %>
+        </div>
+
+    </div>
+</section>
+
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Clients Say</h2>
+                <p>Real feedback from candidates and employers we've helped</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="testimonial-text">"TalentHub helped me find my perfect job within just 2 weeks. The recruiters were very professional and supportive throughout the process."</p>
+                        <p class="testimonial-author">Rahul Kumar</p>
+                        <p class="testimonial-author-role">Senior Developer, TechCorp</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="testimonial-text">"We partnered with TalentHub to fill critical roles and were impressed with the quality of candidates. Highly recommended!"</p>
+                        <p class="testimonial-author">Priya Sharma</p>
+                        <p class="testimonial-author-role">HR Manager, FinanceHub</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="testimonial-text">"Outstanding service! The team at TalentHub understood our requirements perfectly and matched us with ideal candidates."</p>
+                        <p class="testimonial-author">Vikram Singh</p>
+                        <p class="testimonial-author-role">Director, SalesForce</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section style="background: linear-gradient(135deg, var(--primary-color), #2a7cb8); color: white; padding: 60px 0;">
+        <div class="container text-center">
+            <h2 style="color: white; margin-bottom: 30px;">Ready to Take the Next Step?</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 30px; color: rgba(255,255,255,0.9);">Join thousands of successful candidates and employers</p>
+            <div>
+                <a href="/apply" class="btn btn-light me-3">Apply for a Job</a>
+              
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+            
+
+<%- include('footer.ejs') %>
+            

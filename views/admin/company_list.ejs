@@ -1,0 +1,31 @@
+<%- include('navbar.ejs') %>
+<div class="container">
+    <h1>Add Company</h1>
+    <form action="/admin/save_company" method="POST" enctype="multipart/form-data">
+
+        <div class="mb-3">
+            <label class="form-label">Company Logo</label>
+            <input type="file" class="form-control" name="company_logo">
+        </div>
+        <button type="submit" class="btn btn-primary">Save Company</button>
+    </form>
+    <!-- table -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Company Logo</th>
+            </tr>
+        </thead>
+        <tbody>
+<% for (var i=0; i<company_list_data.length; i++) { %>
+            <tr>
+                <td><%- i+1 %></td>
+                <td><img src="/uploads/images/<%= company_list_data[i].company_logo %>" alt="Company Logo" style="width: 100px; height: auto;"></td>
+            </tr>
+            <% }; %>
+        </tbody>
+    </table>
+
+        
+<%- include('footer.ejs') %>

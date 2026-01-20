@@ -1,0 +1,25 @@
+<%- include('navbar.ejs') %>
+
+<div class="container mt-4">
+<h3>Edit About</h3>
+
+<form action="/admin/update_about/<%= about.about_id %>" method="POST" enctype="multipart/form-data">
+
+<input type="hidden" name="old_image" value="<%= about.about_image %>">
+
+<input type="text" class="form-control mb-2"
+name="about_title" value="<%= about.about_title %>" required>
+
+<textarea class="form-control mb-2"
+name="about_description" required><%= about.about_description %></textarea>
+
+<img src="/uploads/images/<%= about.about_image %>" width="120" class="mb-2">
+
+<input type="file" name="about_image" class="form-control mb-2">
+
+<button class="btn btn-success btn-sm">Update</button>
+
+</form>
+</div>
+
+<%- include('footer.ejs') %>

@@ -1,0 +1,80 @@
+<%- include('navbar.ejs') %>
+
+<div class="container">
+  <form action="/admin/save_latest_jobs" method="POST">
+
+    <div class="mb-3">
+      <label class="form-label">Job Role</label>
+      <input type="text" class="form-control" name="job_role">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Company Name</label>
+      <input type="text" class="form-control" name="company_name">
+    </div>
+
+
+    <div class="mb-3">
+      <label class="form-label">Company Location</label>
+      <input type="text" class="form-control" name="company_location">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Experience Required</label>
+      <input type="text" class="form-control" name="emp_exp">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Job Description</label>
+      <textarea class="form-control" name="job_desc"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Languages Required</label>
+      <input type="text" class="form-control" name="emp_lang">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Job Package</label>
+      <input type="number" class="form-control" name="job_package">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<!-- job table -->
+<div class="container mt-5">
+  <h2>Latest Job Listings</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Job Role</th>
+        <th>Company Name</th>
+        <th>Location</th>
+        <th>Experience</th>
+        <th>Description</th>
+        <th>Languages</th>
+        <th>Package</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%  for(var i=0; i<latest_jobs_data.length; i++) { %>
+        <tr>
+          <td><%= latest_jobs_data[i].job_role %></td>
+          <td><%= latest_jobs_data[i].company_name %></td>
+          <td><%= latest_jobs_data[i].company_location %></td>
+          <td><%= latest_jobs_data[i].emp_exp %></td>
+          <td><%= latest_jobs_data[i].job_desc %></td>
+          <td><%= latest_jobs_data[i].emp_lang %></td>
+          <td><%= latest_jobs_data[i].job_package %></td>
+          <td><a href="/admin/delete_latest_jobs/<%= latest_jobs_data[i].latest_jobs_id %>" class="btn btn-warning btn-sm">Delete</a>
+                      <a href="/admin/edit_latest_jobs/<%= latest_jobs_data[i].latest_jobs_id %>" class="btn btn-danger btn-sm">edit</a>
+
+        </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+<%- include('footer.ejs') %>

@@ -1,0 +1,19 @@
+<%- include('navbar.ejs') %>
+<div class="container">
+    <h1>Edit We Serve Industry</h1>
+    <form action="/admin/update_we_serve_industry/<%= we_serve_industry[0].id %>" method="POST">
+        <div class="mb-3">
+            <label>Icon Name</label>
+            <input type="text" class="form-control" name="we_serve_industry_icon" value="<%= we_serve_industry[0].we_serve_industry_icon %>" required>
+        </div><br><br>
+        <div class="mb-3">
+            <label>Title</label>
+            <input type="text" class="form-control" name="we_serve_industry_title" value="<%= we_serve_industry[0].we_serve_industry_title %>" required>
+        </div><br><br>
+        <div class="mb-3">
+            <label>Description</label>
+            <textarea class="form-control" name="we_serve_industry_description" rows="4" required><%= we_serve_industry[0].we_serve_industry_description %></textarea>
+        </div><br><br>
+        <button type="submit" class="btn btn-primary">Update</button>
+</div>
+<%- include('footer.ejs') %>

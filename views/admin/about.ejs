@@ -1,0 +1,44 @@
+<%- include('navbar.ejs') %>
+
+<div class="container mt-4">
+
+<% if (about_data.length == 0) { %>
+
+<h3>Add About</h3>
+<form action="/admin/save_about" method="POST" enctype="multipart/form-data">
+  <input type="text" name="about_title" class="form-control mb-2" placeholder="Title" required>
+  <textarea name="about_description" class="form-control mb-2" required></textarea>
+  <input type="file" name="about_image" class="form-control mb-2" required>
+  <button class="btn btn-primary btn-sm">Save</button>
+</form>
+
+<% } else { %>
+
+<h3>About Section</h3>
+<table class="table table-bordered">
+<tr>
+  <th>Title</th>
+  <th>Description</th>
+  <th>Image</th>
+  <th>Action</th>
+</tr>
+
+<tr>
+  <td><%= about_data[0].about_title %></td>
+  <td><%= about_data[0].about_description %></td>
+  <td>
+    <img src="/uploads/images/<%= about_data[0].about_image %>" width="100">
+  </td>
+  <td>
+    <a href="/admin/edit_about/<%= about_data[0].about_id %>" class="btn btn-warning btn-sm">
+      Edit
+    </a>
+  </td>
+</tr>
+</table>
+
+<% } %>
+
+</div>
+
+<%- include('footer.ejs') %>

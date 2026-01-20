@@ -1,0 +1,67 @@
+<%- include('navbar.ejs') %>
+ <!-- ===== PAGE HEADER ===== -->
+    <section style="background: linear-gradient(135deg, var(--primary-color), #2a7cb8); color: white; padding: 60px 0;">
+        <div class="container">
+            <h1>Job Listings</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 0;">Discover exciting career opportunities</p>
+        </div>
+    </section>
+
+
+    <!-- ===== JOB LISTINGS ===== -->
+<section style="background-color: var(--light-bg);">
+    <div class="container">
+        <div class="row">
+
+            <% for(var i=0; i < latest_jobs_data.length; i++) { %>
+
+            <div class="col-lg-6">
+                <div class="job-card">
+                    <h5><%= latest_jobs_data[i].job_role %></h5>
+
+                    <div class="job-meta">
+                        <span class="job-meta-item">
+                            <i class="bi bi-building"></i>
+                            <%= latest_jobs_data[i].company_name %>
+                        </span>
+
+                        <span class="job-meta-item">
+                            <i class="bi bi-geo-alt"></i>
+                            <%= latest_jobs_data[i].company_location %>
+                        </span>
+
+                        <span class="job-meta-item">
+                            <i class="bi bi-briefcase"></i>
+                            <%= latest_jobs_data[i].emp_exp %>
+                        </span>
+                    </div>
+
+                    <p class="job-description">
+                        <%= latest_jobs_data[i].job_desc %>
+                    </p>
+
+                    <div>
+                        <span class="badge">
+                            <%= latest_jobs_data[i].emp_lang %>
+                        </span>
+                    </div>
+
+                    <div class="mt-3">
+                        <small class="text-success">
+                            &#8377; <%= latest_jobs_data[i].job_package %>
+                        </small>
+                    </div>
+
+                    <a href="/jobs" class="btn btn-primary btn-sm mt-3">
+                        View Details & Apply
+                    </a>
+                </div>
+            </div>
+
+            <% } %>
+
+        </div>
+    </div>
+</section>
+
+<%- include('footer.ejs') %>

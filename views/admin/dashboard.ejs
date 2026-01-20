@@ -1,0 +1,141 @@
+<%- include('navbar.ejs') %>
+
+<div class="container mt-4">
+    <h1 class="mb-4">Welcome to Admin Dashboard</h1>
+
+    <div class="row g-4">
+
+        <!-- Card: We Serve Industry -->
+        <div class="col-md-3">
+            <div class="card text-white bg-primary h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-industry fa-2x me-3"></i>
+                        <div>
+                            <h5 class="card-title">We Serve Industry</h5>
+                            <p class="card-text">Manage industries served</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="/admin/we_serve_industry" class="card-footer text-white text-decoration-none">
+                    Go to section
+                </a>
+            </div>
+        </div>
+
+        <!-- Card: Latest Jobs -->
+        <div class="col-md-3">
+            <div class="card text-white bg-success h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-briefcase fa-2x me-3"></i>
+                        <div>
+                            <h5 class="card-title">Latest Jobs</h5>
+                            <p class="card-text">Add or edit job listings</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="/admin/latest_jobs" class="card-footer text-white text-decoration-none">
+                    Go to section
+                </a>
+            </div>
+        </div>
+
+        <!-- Card: Company List -->
+        <div class="col-md-3">
+            <div class="card text-white bg-warning h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-building fa-2x me-3"></i>
+                        <div>
+                            <h5 class="card-title">Company List</h5>
+                            <p class="card-text">Manage all companies</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="/admin/company_list" class="card-footer text-white text-decoration-none">
+                    Go to section
+                </a>
+            </div>
+        </div>
+
+        <!-- Card: About -->
+        <div class="col-md-3">
+            <div class="card text-white bg-danger h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-info-circle fa-2x me-3"></i>
+                        <div>
+                            <h5 class="card-title">About</h5>
+                            <p class="card-text">Edit About section</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="/admin/about" class="card-footer text-white text-decoration-none">
+                    Go to section
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row g-4 mt-3">
+
+        <!-- Card: Services -->
+        <div class="col-md-3">
+            <div class="card text-white bg-info h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-cogs fa-2x me-3"></i>
+                        <div>
+                            <h5 class="card-title">Services</h5>
+                            <p class="card-text">Add or edit services</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="/admin/add_services" class="card-footer text-white text-decoration-none">
+                    Go to section
+                </a>
+            </div>
+        </div>
+
+        <!-- Card: Contact -->
+        <div class="col-md-3">
+            <div class="card text-white bg-secondary h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-envelope fa-2x me-3"></i>
+                        <div>
+                            <h5 class="card-title">Contact</h5>
+                            <p class="card-text">View messages</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="/admin/contact" class="card-footer text-white text-decoration-none">
+                    Go to section
+                </a>
+            </div>
+        </div>
+
+        <!-- Card: Job Apply -->
+        <div class="col-md-3">
+            <div class="card text-white bg-dark h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-file-alt fa-2x me-3"></i>
+                        <div>
+                            <h5 class="card-title">Job Apply</h5>
+                            <p class="card-text">View applicants</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="/admin/job_apply" class="card-footer text-white text-decoration-none">
+                    Go to section
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('footer.ejs') %>

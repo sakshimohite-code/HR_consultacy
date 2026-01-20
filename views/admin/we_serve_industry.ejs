@@ -1,0 +1,50 @@
+<%- include('navbar.ejs') %>
+<div class="container mt-5">
+    <h1> Add We Serve Industry </h1>
+    <form action="/admin/save_we_serve_industry" method="POST">
+        <div class="mb-3">
+            <label  >Icon Name</label>
+            <input type="text" class="form-control" id="industryName" name="we_serve_industry_icon" required>
+        </div><br><br>
+        <div class="mb-3">
+            <label >Title</label>
+            <input type="text" class="form-control" id="title" name="we_serve_industry_title" required>
+        </div><br><br>
+         <div class="mb-3">
+            <label >Description</label>>
+            <textarea class="form-control" name="we_serve_industry_description" rows="4" required></textarea>
+        </div><br><br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<!-- We Serve Industry  Table-->
+ <div class="container">
+    <h1>We Serve Industry Table</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Icon Name</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(var i=0; i<we_serve_industry_data.length; i++) { %>
+           
+                <tr>
+                    <td><%= i+1 %></td>
+                    <td><i class="<%= we_serve_industry_data[i].we_serve_industry_icon %>"></i> <%= we_serve_industry_data[i].we_serve_industry_icon %></td>
+                    <td><%= we_serve_industry_data[i].we_serve_industry_title %></td>
+                    <td><%= we_serve_industry_data[i].we_serve_industry_description %></td>
+                    <td>
+                        <a href="/admin/edit_we_serve_industry/<%= we_serve_industry_data[i].id %>" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="/admin/delete_we_serve_industry/<%= we_serve_industry_data[i].id %>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this entry?');">Delete</a>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+ </div>
+    
+<%- include('footer.ejs') %>

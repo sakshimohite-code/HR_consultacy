@@ -1,0 +1,124 @@
+<%- include('navbar.ejs') %>
+ <!-- ===== PAGE HEADER ===== -->
+    <section style="background: linear-gradient(135deg, var(--primary-color), #2a7cb8); color: white; padding: 60px 0;">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 0;">Comprehensive recruitment solutions tailored to your needs</p>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES GRID ===== -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>What We Offer</h2>
+                <p>Specialized recruitment services across multiple domains</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Service 1: IT Recruitment -->
+           <% services_data.forEach(function(service){ %>
+
+<div class="col-lg-6">
+  <div class="service-card p-4 bg-light rounded h-100">
+    <div class="d-flex align-items-start">
+
+      <!-- ICON -->
+      <div style="width: 60px; height: 60px; background-color: orangered;
+                  border-radius: 8px; display: flex; align-items: center;
+                  justify-content: center; color: white; font-size: 2rem;
+                  margin-right: 20px; flex-shrink: 0;">
+        <i class="<%= service.service_icon %>"></i>
+      </div>
+
+      <!-- CONTENT -->
+      <div>
+        <h4><%= service.service_title %></h4>
+
+        <p>
+          <%= service.service_description %>
+        </p>
+
+        <ul class="mb-3">
+          <% service.service_points.split(',').forEach(function(point){ %>
+            <li><%= point.trim() %></li>
+          <% }) %>
+        </ul>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<% }) %>
+
+               
+             
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHY CHOOSE OUR SERVICES ===== -->
+    <section style="background-color: var(--light-bg);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Our Services</h2>
+                <p>Premium quality recruitment solutions backed by expertise and commitment</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="p-4 bg-white rounded text-center" style="box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <i class="bi bi-award" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                        <h5 class="mt-3 mb-2">Industry Expertise</h5>
+                        <p>10+ years of experience across multiple industries with specialized knowledge.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="p-4 bg-white rounded text-center" style="box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <i class="bi bi-lightning-charge" style="font-size: 2.5rem; color: var(--secondary-color);"></i>
+                        <h5 class="mt-3 mb-2">Quick Turnaround</h5>
+                        <p>Average placement time of 2-4 weeks with efficient processes.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="p-4 bg-white rounded text-center" style="box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <i class="bi bi-shield-check" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                        <h5 class="mt-3 mb-2">Quality Guarantee</h5>
+                        <p>Rigorous vetting with 90-day replacement guarantee on permanent placements.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="p-4 bg-white rounded text-center" style="box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <i class="bi bi-graph-up" style="font-size: 2.5rem; color: var(--secondary-color);"></i>
+                        <h5 class="mt-3 mb-2">High Success Rate</h5>
+                        <p>95% placement success rate with long-term client relationships.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="p-4 bg-white rounded text-center" style="box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <i class="bi bi-people-fill" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                        <h5 class="mt-3 mb-2">Dedicated Support</h5>
+                        <p>Personalized service with dedicated account managers for each client.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="p-4 bg-white rounded text-center" style="box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <i class="bi bi-check2-circle" style="font-size: 2.5rem; color: var(--secondary-color);"></i>
+                        <h5 class="mt-3 mb-2">Verified Candidates</h5>
+                        <p>All candidates undergo background checks and skill verification.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section style="background: linear-gradient(135deg, var(--primary-color), #2a7cb8); color: white; padding: 60px 0;">
+        <div class="container text-center">
+            <h2 style="color: white; margin-bottom: 20px;">Ready to Get Started?</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 30px;">Contact our team to discuss your specific recruitment needs</p>
+            <a href="contact.html" class="btn btn-light">Get in Touch</a>
+        </div>
+    </section>
+<%- include('footer.ejs') %>
